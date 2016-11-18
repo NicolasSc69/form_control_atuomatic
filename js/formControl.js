@@ -37,7 +37,7 @@ $( document ).ready(function() {
               formError = true ; 
             }
           } else {
-            var counter = $('#cp').attr('data-max-lenght') ;
+            var counter = $(this).attr('data-max-lenght') ;
             if (value.match(/[0-9]/)) {
               valueForm.push( { TYPE : 'TEXT_INT' , ID_INPUT: ID_INPUT, VALUE : value, });
             } else {
