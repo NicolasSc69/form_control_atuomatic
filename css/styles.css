@@ -1,0 +1,13 @@
+// on fixe la largeur pour contrer le responsive
+.container { width: 1200px!important; }
+.main-container { position: relative;}
+
+
+#page-header  { display: block ; margin: 0 auto ; position: relative ; text-align: center; }
+#page-content { }
+#page-footer  { }
+
+.form-error { color: red; }
+.submit-ok { color : green ;}
+
+//#cboxContent > div { padding-left: 23%; padding-top: 2%; }
