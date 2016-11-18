@@ -28,12 +28,30 @@ $( document ).ready(function() {
       } else {
         // check if is a numeric
         if($(this).hasClass('int')) {
-          if (value.match( /^-?[0-9]+$/)) {
-            valueForm.push( { TYPE : 'TEXT_INT' , ID_INPUT: ID_INPUT, VALUE : value, });
+          if($(this).attr('data-max-lenght') == undefined) {
+            if (value.match(/[0-9]/)) {
+              valueForm.push( { TYPE : 'TEXT_INT' , ID_INPUT: ID_INPUT, VALUE : value, });
+            } else {
+              errors.push( { message: "Field <b>" + replace(libelleError, '*', '') + "</b> isn't a numeric<br>" });
+              $('label[for="' + ID_INPUT + '"]').addClass('form-error');
+              formError = true ; 
+            }
           } else {
-            errors.push( { message: "Field <b>" + replace(libelleError, '*', '') + "</b> isn't a numeric<br>" });
-            $('label[for="' + ID_INPUT + '"]').addClass('form-error');
-            formError = true ;     
+            var counter = $('#cp').attr('data-max-lenght') ;
+            if (value.match(/[0-9]/)) {
+              valueForm.push( { TYPE : 'TEXT_INT' , ID_INPUT: ID_INPUT, VALUE : value, });
+            } else {
+              errors.push( { message: "Field <b>" + replace(libelleError, '*', '') + "</b> isn't a numeric<br>" });
+              $('label[for="' + ID_INPUT + '"]').addClass('form-error');
+              formError = true ; 
+            }
+            if (value.length == counter) {
+              valueForm.push( { TYPE : 'TEXT_INT' , ID_INPUT: ID_INPUT, VALUE : value, });
+            } else {
+              errors.push( { message: "Field <b>" + replace(libelleError, '*', '') + "</b> has not the correct number<br>" });
+              $('label[for="' + ID_INPUT + '"]').addClass('form-error');
+              formError = true ; 
+            }
           }
         } else {
           valueForm.push( { TYPE : 'TEXT' , ID_INPUT: ID_INPUT, VALUE : value, });
